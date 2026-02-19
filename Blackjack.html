@@ -1,0 +1,86 @@
+<!doctype html>
+<style>
+	body {
+		  text-align: center;
+	}
+	.Start {
+		color: green;
+	}
+</style>
+<button id="Start">Start</button>
+<hr>
+<p>BlackJack
+	<h1 id="dealernumbers"></h1>
+	<hr>
+	<h2 id="yournumbers"></h2>
+	<button id="but1">Hit me</button>
+	<button id="but2">Done</button>
+</p>
+<script>
+	let started = false
+	let yournumbs = 0
+	let dealernumbs = 0
+	document.getElementById("Start").onclick = function () {
+        if (started===false) {
+        	started = true;
+        	yournumbs =+ Math.floor(Math.random() * 22);
+        	dealernumbs =+ Math.floor(Math.random() * 12);
+        	if (yournumbs < 2) {
+        		yournumbs = 2
+        	}
+        	if (dealernumbs < 2) {
+        		dealernumbs = 2
+        	}
+        	document.getElementById("yournumbers").innerHTML=yournumbs;
+        	document.getElementById("dealernumbers").innerHTML=dealernumbs;
+        }
+    };
+
+    document.getElementById("but1").onclick = function () {
+    	if (started === true) {
+    		yournumbs += Math.floor(Math.random() * 11);
+    		if (yournumbs > 21) {
+    			started = false
+    			document.getElementById("yournumbers").innerHTML="Busted";
+    		}	else {
+    			document.getElementById("yournumbers").innerHTML=yournumbs;
+    			document.getElementById("dealernumbers").innerHTML=dealernumbs;
+    		}
+    	}
+    };
+    document.getElementById("but2").onclick = function () {
+    	if (started === true) {
+    		started = false
+    		if (dealernumbs < yournumbs) {
+    			dealernumbs += Math.floor(Math.random() * 22)
+    			document.getElementById("yournumbers").innerHTML=yournumbs;
+    			document.getElementById("dealernumbers").innerHTML=dealernumbs;
+    			if (dealernumbs < 17) {
+    				dealernumbs += Math.floor(Math.random() * 22)
+    				document.getElementById("dealernumbers").innerHTML=dealernumbs +" You Win!";
+    			}
+    			if (dealernumbs > yournumbs) {
+					if (dealernumbs < 21) {
+						document.getElementById("yournumbers").innerHTML=yournumbs;
+    					document.getElementById("dealernumbers").innerHTML=dealernumbs +" You Lose!";
+					}
+    				}	else {
+    					document.getElementById("yournumbers").innerHTML=yournumbs;
+    					document.getElementById("dealernumbers").innerHTML=dealernumbs +" You Win!";
+    				} 
+    				if (dealernumbs === yournumbs) {
+    						document.getElementById("dealernumbers").innerHTML=dealernumbs +" Draw!";
+    				}
+    				if (dealernumbs > 21) {
+    					document.getElementById("yournumbers").innerHTML=yournumbs;
+    					document.getElementById("dealernumbers").innerHTML=dealernumbs +" You Win!";
+    				}
+
+    			}	else {
+    				document.getElementById("yournumbers").innerHTML=yournumbs;
+    				document.getElementById("dealernumbers").innerHTML=dealernumbs +"You Lose!";
+    			}
+
+    	}
+    }
+</script>
