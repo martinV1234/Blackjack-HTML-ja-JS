@@ -52,11 +52,11 @@
     	if (started === true) {
     		started = false
     		if (dealernumbs < yournumbs) {
-    			dealernumbs += Math.floor(Math.random() * 22)
+    			dealernumbs += Math.floor(Math.random() * 12)
     			document.getElementById("yournumbers").innerHTML=yournumbs;
     			document.getElementById("dealernumbers").innerHTML=dealernumbs;
     			if (dealernumbs < 17) {
-    				dealernumbs += Math.floor(Math.random() * 22)
+    				dealernumbs += Math.floor(Math.random() * 12)
     				document.getElementById("dealernumbers").innerHTML=dealernumbs +" You Win!";
     			}
     			if (dealernumbs > yournumbs) {
